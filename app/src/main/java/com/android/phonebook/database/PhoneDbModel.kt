@@ -20,10 +20,10 @@ data class PhoneDbModel(
 
     companion object {
         val DEFAULT_PHONES = listOf(
-            PhoneDbModel(1,"Robert","Downey","Jr","000111222","Mobile",false,false,1,false),
-            PhoneDbModel(2,"Dwayne","","Johnson","111222333","Home",false,false,2,false),
-            PhoneDbModel(3,"Johnny","","Depp","333444555","Work",false,false,3,false),
-            PhoneDbModel(4,"Brat","","Pitt","444555666", "Other",false,false,4,false,)
+            PhoneDbModel(1,"Robert","Downey","Jr","0001112222","Mobile",false,false,1,false),
+            PhoneDbModel(2,"Dwayne","","Johnson","1112223333","Home",false,false,2,false),
+            PhoneDbModel(3,"Johnny","","Depp","3334445555","Work",false,false,3,false),
+            PhoneDbModel(4,"Brat","","Pitt","4445556666", "Other",false,false,4,false,)
         )
     }
 }

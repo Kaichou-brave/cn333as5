@@ -118,9 +118,9 @@ private fun PhonesList(
 private fun PhonesListPreview() {
     PhonesList(
         phones = listOf(
-            PhoneModel(1, "A", "", "Ant", "000000000", "Mobile", null),
-            PhoneModel(2, "B", "", "Bird", "111111111", "Home", false),
-            PhoneModel(3, "C", "", "Cat", "222222222", "Work", true)
+            PhoneModel(1, "A", "", "Ant", "0000000000", "Mobile", null),
+            PhoneModel(2, "B", "", "Bird", "1111111111", "Home", false),
+            PhoneModel(3, "C", "", "Cat", "2222222222", "Work", true)
         ),
         onPhoneCheckedChange = {},
         onPhoneClick = {}

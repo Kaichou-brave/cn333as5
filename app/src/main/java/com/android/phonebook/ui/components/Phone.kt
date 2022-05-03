@@ -43,7 +43,19 @@ fun Phone(
                 )
             },
             secondaryText = {
-                Text(text = phone.contact, maxLines = 1)
+                if (phone.contact.length == 10) {
+                    Text(
+                        text = "" + phone.contact.subSequence(0, 3) + "-" + phone.contact.subSequence(3, 6) + "-" + phone.contact.subSequence(6, 9) + phone.contact[9], maxLines = 1
+                    )
+                } else if (phone.contact.length == 9) {
+                    Text(
+                        text = "" + phone.contact.subSequence(0, 3) + "-" + phone.contact.subSequence(3, 6) + "-" + phone.contact.subSequence(6, 8) + phone.contact[8], maxLines = 1
+                    )
+                } else{
+                    Text(
+                        text = phone.contact, maxLines = 1
+                    )
+                }
             },
             icon = {
                 PhoneColor(
@@ -75,5 +87,8 @@ fun Phone(
 @Preview
 @Composable
 private fun PhonePreview() {
-    Phone(phone = PhoneModel(1, "first", "", "last", "000-000-000", "Mobile",null), isSelected = false)
+    Phone(
+        phone = PhoneModel(1, "first", "", "last", "0000000000", "Mobile", null),
+        isSelected = false
+    )
 }
