@@ -53,7 +53,7 @@ class Repository(
         val colorDbModels: Map<Long, ColorDbModel> =
             colorDao.getAllSync().map { it.id to it }.toMap()
         val dbPhones: List<PhoneDbModel> =
-            phoneDao.getAllSync().filter { it.isInTrash == inTrash }
+            phoneDao.getAllSync().filter { it.isInTrash == inTrash }.sortedBy { it.first_name }
         return dbMapper.mapPhones(dbPhones, colorDbModels)
     }
 

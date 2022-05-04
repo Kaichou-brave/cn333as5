@@ -37,21 +37,40 @@ fun Phone(
     ) {
         ListItem(
             text = {
-                Text(
-                    text = phone.first_name + " " + phone.middle_name + " " + phone.last_name,
-                    maxLines = 1
-                )
+                if (phone.middle_name == "") {
+                    Text(
+                        text = phone.first_name + " " + phone.last_name + " (" + phone.tag + ")",
+                        maxLines = 1
+                    )
+                } else {
+                    Text(
+                        text = phone.first_name + " " + phone.middle_name + " " + phone.last_name + " (" + phone.tag + ")",
+                        maxLines = 1
+                    )
+                }
             },
             secondaryText = {
                 if (phone.contact.length == 10) {
                     Text(
-                        text = "" + phone.contact.subSequence(0, 3) + "-" + phone.contact.subSequence(3, 6) + "-" + phone.contact.subSequence(6, 9) + phone.contact[9], maxLines = 1
+                        text = "" + phone.contact.subSequence(
+                            0,
+                            3
+                        ) + "-" + phone.contact.subSequence(3, 6) + "-" + phone.contact.subSequence(
+                            6,
+                            9
+                        ) + phone.contact[9], maxLines = 1
                     )
                 } else if (phone.contact.length == 9) {
                     Text(
-                        text = "" + phone.contact.subSequence(0, 3) + "-" + phone.contact.subSequence(3, 6) + "-" + phone.contact.subSequence(6, 8) + phone.contact[8], maxLines = 1
+                        text = "" + phone.contact.subSequence(
+                            0,
+                            3
+                        ) + "-" + phone.contact.subSequence(3, 6) + "-" + phone.contact.subSequence(
+                            6,
+                            8
+                        ) + phone.contact[8], maxLines = 1
                     )
-                } else{
+                } else {
                     Text(
                         text = phone.contact, maxLines = 1
                     )

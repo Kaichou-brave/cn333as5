@@ -1,19 +1,19 @@
 package com.android.phonebook.screen
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.List
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.tooling.preview.Preview
 import com.android.phonebook.domain.model.PhoneModel
 import com.android.phonebook.routing.Screen
 import com.android.phonebook.ui.components.AppDrawer
 import com.android.phonebook.ui.components.Phone
+import com.android.phonebook.ui.components.Search
 import com.android.phonebook.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
@@ -26,6 +26,8 @@ fun PhoneScreen(viewModel: MainViewModel) {
     val scaffoldState: ScaffoldState = rememberScaffoldState()
 
     val coroutineScope = rememberCoroutineScope()
+
+    val query = remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -61,13 +63,28 @@ fun PhoneScreen(viewModel: MainViewModel) {
     )
     {
         if (phones.isNotEmpty()) {
-            PhonesList(
-                phones = phones,
-                onPhoneCheckedChange = { viewModel.onPhoneCheckedChange(it) },
-                onPhoneClick = { viewModel.onPhoneClick(it) }
-            )
+            Column() {
+                Search(searchBy = query)
+                PhonesList(
+                    phones = search(query.value, phones),
+                    onPhoneCheckedChange = { viewModel.onPhoneCheckedChange(it) },
+                    onPhoneClick = { viewModel.onPhoneClick(it) }
+                )
+            }
         }
     }
+}
+
+fun search(searchBy: String, phoneList: List<PhoneModel>): List<PhoneModel> {
+    val res: ArrayList<PhoneModel> = ArrayList()
+    for (phone in phoneList) {
+        val searchKey =
+            phone.first_name + phone.middle_name + phone.last_name + phone.tag + phone.contact
+        if (searchKey.contains(searchBy, ignoreCase = true)) {
+            res.add(phone)
+        }
+    }
+    return res.toList()
 }
 
 @Composable
@@ -111,6 +128,7 @@ private fun PhonesList(
         }
     }
 }
+
 
 @ExperimentalMaterialApi
 @Preview

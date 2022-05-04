@@ -220,7 +220,6 @@ fun SavePhoneTopAppBar(
 
 @Composable
 private fun SavePhoneContent(
-
     phone: PhoneModel,
     onPhoneChange: (PhoneModel) -> Unit
 ) {
@@ -313,7 +312,6 @@ private fun ContentTextField(
         )
     )
 }
-
 
 @Composable
 private fun PhoneCheckOption(

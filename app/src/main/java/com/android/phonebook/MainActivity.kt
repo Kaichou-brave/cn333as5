@@ -15,6 +15,7 @@ import com.android.phonebook.routing.Screen
 import com.android.phonebook.screen.PhoneScreen
 import com.android.phonebook.screen.TrashScreen
 import com.android.phonebook.ui.theme.PhoneBookTheme
+import com.android.phonebook.ui.theme.PhoneBookThemeSettings
 import com.android.phonebook.viewmodel.MainViewModel
 import com.android.phonebook.viewmodel.MainViewModelFactory
 
@@ -23,7 +24,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            PhoneBookTheme {
+            PhoneBookTheme(darkTheme = PhoneBookThemeSettings.isDarkThemeEnabled) {
                 val viewModel: MainViewModel = viewModel(
                     factory = MainViewModelFactory(LocalContext.current.applicationContext as Application)
                 )
